@@ -25,11 +25,8 @@
             </div>
         @endif
 
-        @if (session('login_error'))
-            <div class="alert alert-danger">
-                {{ session('login_error') }}
-            </div>
-        @endif
+        <x-alert type="danger" :session="session('danger')"/>
+
         <label for="inputId" class="sr-only">Login ID</label>
         <input type="text" id="inputid" name="login_id" class="form-control" placeholder="ログインID" required autofocus>
         <label for="inputPassword" class="sr-only">Password</label>
