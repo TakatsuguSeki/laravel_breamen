@@ -2,6 +2,8 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Auth\AuthController;
+use App\Http\Controllers\Admin\ProductController;
+use App\Http\Controllers\Admin\EarningsController;
 
 /*
 |--------------------------------------------------------------------------
@@ -29,3 +31,23 @@ Route::middleware(['auth'])->group(function () {
     //ログアウト
     Route::post('logout', [AuthController::class, 'logout'])->name('logout');
 });
+
+//商品管理画面
+//商品一覧
+Route::get('product_list', [ProductController::class, 'productList'])->name('productList');
+//商品登録・編集
+Route::post('product_edit', [ProductController::class, 'productEdit'])->name('productEdit');
+//登録・編集確認
+Route::post('product_conf', [ProductController::class, 'productConf'])->name('productConf');
+//登録・編集完了
+Route::post('product_done', [ProductController::class, 'productDone'])->name('productDone');
+
+//売上管理画面
+//売上一覧
+Route::get('earnings_list', [EarningsController::class, 'earningsList'])->name('earningsList');
+//売上登録・編集
+Route::post('earnings_edit', [EarningsController::class, 'earningsEdit'])->name('earningsEdit');
+//登録・編集確認
+Route::post('earnings_conf', [EarningsController::class, 'earningsConf'])->name('earningsConf');
+//登録・編集完了
+Route::post('earnings_done', [EarningsController::class, 'earningsDone'])->name('earningsDone');
