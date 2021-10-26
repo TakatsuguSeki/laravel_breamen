@@ -35,6 +35,12 @@ Route::middleware(['auth'])->group(function () {
 //商品管理画面
 //商品一覧
 Route::get('product_list', [ProductController::class, 'productList'])->name('productList');
+//商品登録画面
+Route::get('product_list/add', [ProductController::class, 'productAdd'])->name('add');
+//商品登録
+Route::post('product_list/store', [ProductController::class, 'productStore'])->name('store');
+//商品詳細
+Route::get('product_list/{id}', [ProductController::class, 'productDetail'])->name('productDetail');
 //商品登録・編集
 Route::post('product_edit', [ProductController::class, 'productEdit'])->name('productEdit');
 //登録・編集確認
