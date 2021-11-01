@@ -39,11 +39,10 @@
                         @endif
                     </td>
                     <td>
-                        <form action="product_edit.php?status=edit&id" method="post">
+                        <button type="button" class="btn btn-primary" onclick="location.href='/product_list/edit/{{ $product->id }}'">編集</button>
+                        <form method="post" action="{{ route('delete', $product->id) }}" onSubmit="return checkDelete()">
                             @csrf
-                            <input type="hidden" name="id" value="id">
-                            <button type="submit">編集</button>
-                            <input type="submit" name="delete" value="削除" formaction="product_list.php" onclick="return confirm('本当に削除しますか？')">
+                            <button type="submit" class="btn btn-danger">削除</button>
                         </form>
                     </td>
                 </tr>
@@ -51,4 +50,13 @@
         </table>
     </div>
 </div>
+<script>
+    function checkDelete(){
+    if(window.confirm('削除してよろしいですか？')){
+        return true;
+    } else {
+        return false;
+    }
+    }
+</script>
 @endsection

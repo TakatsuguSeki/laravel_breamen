@@ -147,8 +147,9 @@ return [
     */
 
     'attributes' => [
-        'id' => 'ログインID',
-        'passwaord' => 'パスワード',
+        'name' => '商品名',
+        'price' => '金額',
+        'description' => '詳細',
     ],
 
 ];
