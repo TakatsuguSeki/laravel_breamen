@@ -4,9 +4,12 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Kyslik\ColumnSortable\Sortable;
 
 class Product extends Model
 {
+    use Sortable;
+
     //テーブル名
     protected $table = 'product';
 
@@ -24,5 +27,11 @@ class Product extends Model
         'created_at',
         'updated_at',
         'delete_flg',
+    ];
+
+    public $sortable =[
+        'id',
+        'name',
+        'updated_at',
     ];
 }
