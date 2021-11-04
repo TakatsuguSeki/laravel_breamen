@@ -47,8 +47,8 @@ class ProductController extends Controller
     public function productAdd()
     {
         $user_id = Auth::id();
-        $product_category = ProductCategory::where('delete_flg', 0)->get();
-        return view('product.form', ['product_category' => $product_category, 'user_id' => $user_id]);
+        $productCategory = ProductCategory::where('delete_flg', 0)->get();
+        return view('product.form', ['productCategory' => $productCategory, 'user_id' => $user_id]);
     }
 
     /**

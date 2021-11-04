@@ -28,7 +28,7 @@
                     <th>商品カテゴリー</th>
                     <td>
                         <select id="product_category_id" name="product_category_id" class="form-control">
-                            @foreach ($product_category as $value)
+                            @foreach ($productCategory as $value)
                                 <option value="{{ $value->id }}" @if(old('product_category_id') == $value->id) selected @endif>{{ $value->name }}</option>
                             @endforeach
                         </select>

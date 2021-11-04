@@ -2,7 +2,8 @@
 @section('title', '売上一覧')
 @section('content')
 <div class="row">
-    <div><h2>売上一覧</h2>
+    <div>
+        <h2>売上一覧</h2>
         @if (session('err_msg'))
             <p class="text-danger">
                 {{ session('err_msg') }}
@@ -10,16 +11,16 @@
         @endif
         <form class="indicate" action="" method="get">
             @csrf
-            <input type="month" name="month" value="month">
+            <input type="month" name="month" value="{{ old('month', \Carbon\Carbon::now()->format('Y-m')) }}">
             <input type="submit" name="indicate" value="表示">
         </form>
-        <form action="{{ route('add') }}" method="get">
+        <form action="{{ route('earningsAdd') }}" method="get">
             @csrf
             <button type="submit">新規登録</button>
         </form>
         <table class="table table-striped">
             <tr>
-                <th>@sortablelink('date', '日付')</th>
+                <th>日付</th>
                 <th>売上総数</th>
                 <th>売上総額（円）</th>
                 <th></th>
