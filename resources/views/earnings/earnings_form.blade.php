@@ -3,7 +3,7 @@
 @section('content')
 <div>
     <h2>売上管理登録</h2>
-    <form method="post" action="{{ route('store') }}">
+    <form method="post" action="{{ route('addPost') }}">
     @csrf
         <div class="form-group">
             <table class="table table-striped">
@@ -60,13 +60,4 @@
         </div>
     </form>
 </div>
-<script>
-function checkSubmit(){
-if(window.confirm('送信してよろしいですか？')){
-    return true;
-} else {
-    return false;
-}
-}
-</script>
 @endsection
