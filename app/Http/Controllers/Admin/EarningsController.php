@@ -41,6 +41,7 @@ class EarningsController extends Controller
     public function earningsAddPost(Request $request)
     {
         $input = $request->only($this->formItems);
+
         //セッションへの書き込み
         $request->session()->put('form_input', $input);
 
@@ -88,7 +89,7 @@ class EarningsController extends Controller
         $user_id = Auth::id();
         $input = $request->session()->get('form_input');
 
-        $product = Product::where('id', '=', $input['product_id'])->get();
+        $product = Product::whereIn('id', $input['product_id'])->get();
 
         return view('earnings.earnings_confirm',['input' => $input, 'product' => $product, 'user_id' => $user_id]);
     }

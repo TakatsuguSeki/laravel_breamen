@@ -22,23 +22,23 @@ $totalprice = 0;
                     <th>個数</th>
                     <th>小計</th>
                 </tr>
-                @foreach ($product as $value)
+                @for ($i = 0; $i < count($input['num']); $i++)
                     <tr>
-                        <th>{{ $value->name }}</th>
-                        <td>{{ number_format($value->price) }}</td>
-                        <td>{{ $num = !empty($input['num']) ? number_format($input['num']) : 0 }}</td>
-                        <td>{{ number_format($value->price * $num) }}</td>
+                        <th>{{ $product[$i]['name'] }}</th>
+                        <td>{{ number_format($product[$i]['price']) }}</td>
+                        <td>{{ $num = !empty($input['num'][$i]) ? number_format($input['num'][$i]) : 0 }}</td>
+                        <td>{{ number_format($product[$i]['price'] * $num) }}</td>
                         @php
-                            $totalprice += ($value->price * $num)
+                            $totalprice += ($product[$i]['price'] * $num)
                         @endphp
                     </tr>
-                    @endforeach
+                @endfor
                 </table>
             <table class="total">
                 <tr>
                     <th>売上総数</th>
                     <td>
-                        {{ number_format($totalnum = array_sum(array_column($input, 'num'))) }}
+                        {{ number_format($totalnum = array_sum($input['num'])) }}
                     </td>
                 </tr>
                 <tr>
@@ -53,7 +53,7 @@ $totalprice = 0;
                 キャンセル
             </a>
             <button type="submit" class="btn btn-primary">
-                確認画面へ
+                登録する
             </button>
         </div>
     </form>

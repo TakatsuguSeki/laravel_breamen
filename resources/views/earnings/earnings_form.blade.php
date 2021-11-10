@@ -26,7 +26,7 @@
                 </tr>
                 <tr>
                     <td>
-                        <select id="product_id" name="product_id" class="form-control">
+                        <select id="product_id" name="product_id[]" class="form-control">
                             @foreach ($products as $value)
                                 <option value="{{ $value->id }}" @if(old('product_id') == $value->id) selected @endif>{{ $value->name }}</option>
                             @endforeach
@@ -35,7 +35,7 @@
                     <td>
                         <input
                         type="text"
-                        name="num"
+                        name="num[]"
                         class="form-control"
                         value="{{ old('num', 0) }}"
                         >

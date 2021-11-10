@@ -3,7 +3,7 @@
 @section('content')
 <div>
     <h2>売上管理編集</h2>
-    <form method="post" action="{{ route('update') }}">
+    <form method="post" action="{{ route('editPost') }}">
         @csrf
         <div class="form-group">
             <table class="table table-striped">
@@ -11,6 +11,7 @@
                     <th>日付</th>
                     <td>
                         {{ $earnings->date }}
+                        <input type="hidden" name="date" value="{{ $earnings->date }}">
                     </td>
                 </tr>
             </table>
@@ -22,7 +23,7 @@
                 @foreach ($earnings_detail as $value)
                 <tr>
                     <td>
-                        <select id="product_id" name="product_id" class="form-control">
+                        <select id="product_id" name="product_id[]" class="form-control">
                             @foreach ($products as $product)
                                 <option value="{{ $product->id }}" @if($product->id == $value->product_id) selected @endif>{{ $product->name }}</option>
                             @endforeach
@@ -31,7 +32,7 @@
                     <td>
                         <input
                         type="text"
-                        name="num"
+                        name="num[]"
                         class="form-control"
                         value="{{ old('num', $value->num) }}"
                         >
