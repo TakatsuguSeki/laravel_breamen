@@ -9,9 +9,9 @@
                 {{ session('err_msg') }}
             </p>
         @endif
-        <form class="indicate" action="" method="get">
+        <form class="indicate" action="{{ route('earningsList') }}" method="get">
             @csrf
-            <input type="month" name="month" value="{{ old('month', \Carbon\Carbon::now()->format('Y-m')) }}">
+            <input type="month" name="month" value="{{ old('$month', \Carbon\Carbon::now()->format('Y-m')) }}">
             <input type="submit" name="indicate" value="表示">
         </form>
         <form action="{{ route('earningsAdd') }}" method="get">

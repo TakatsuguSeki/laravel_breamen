@@ -58,13 +58,5 @@ Route::get('earnings_list/edit/{id}', [EarningsController::class, 'earningsEdit'
 Route::post('earnings_list/edit', [EarningsController::class, 'earningsEditPost'])->name('editPost');
 //登録・編集確認画面
 Route::get('earnings_list/confirm', [EarningsController::class, 'earningsConfirm'])->name('earningsConfirm');
-Route::post('earnings_list/confirm', [EarningsController::class, 'earningsSave'])->name('earningsSave');
-
-//売上登録
-Route::post('earnings_list/store', [EarningsController::class, 'earningsStore'])->name('store');
-
-//売上編集
-Route::post('earnings_list/update', [EarningsController::class, 'earningsUpdate'])->name('update');
-
-//商品削除
-//Route::post('earnings_list/delete/{id}', [EarningsController::class, 'productDelete'])->name('delete');
+//売上登録・更新
+Route::post('earnings_list/store', [EarningsController::class, 'earningsStore'])->name('earningsStore');

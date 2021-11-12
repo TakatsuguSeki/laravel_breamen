@@ -8,6 +8,7 @@ use Kyslik\ColumnSortable\Sortable;
 
 class EarningsDetail extends Model
 {
+    public $timestamps = false;
     use Sortable;
 
     //テーブル名
