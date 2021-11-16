@@ -55,6 +55,7 @@ Route::get('earnings_list/add', [EarningsController::class, 'earningsAdd'])->nam
 Route::post('earnings_list/add', [EarningsController::class, 'earningsAddPost'])->name('addPost');
 //売上編集画面
 Route::get('earnings_list/edit/{id}', [EarningsController::class, 'earningsEdit'])->name('earningsEdit');
+Route::post('earnings_list/edit/{id}', [EarningsController::class, 'earningsPost'])->name('earningsPost');
 Route::post('earnings_list/edit', [EarningsController::class, 'earningsEditPost'])->name('editPost');
 //登録・編集確認画面
 Route::get('earnings_list/confirm', [EarningsController::class, 'earningsConfirm'])->name('earningsConfirm');

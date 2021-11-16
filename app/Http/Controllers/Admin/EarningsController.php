@@ -70,7 +70,38 @@ class EarningsController extends Controller
             \Session::flash('err_msg', 'データがありません。');
             return redirect(route('earningsList'));
         }
-        return view('earnings.earnings_edit', ['products' => $products, 'earnings' => $earnings, 'earnings_detail' => $earnings_detail, 'user_id' => $user_id]);
+        return view('earnings.earnings_edit', ['id' => $id, 'products' => $products, 'earnings' => $earnings, 'earnings_detail' => $earnings_detail, 'user_id' => $user_id]);
+    }
+    /**
+     * 行追加と削除⇒売上編集画面を表示する
+     * @param int $id
+     * @return View
+     */
+    public function earningsPost($id, Request $request)
+    {
+        $post[] = $request;
+        //セレクトボックス用商品取得
+        $products = Product::where('delete_flg', 0)->get();
+        $earnings = Earnings::find($id);
+        $earnings_detail = EarningsDetail::where('earnings_id', '=', $id)->get();
+        $user_id = Auth::id();
+
+        $earnings_detail = array_merge([$post, $earnings_detail]);
+
+        if (isset($request->line_add)) {
+            $postCount = $request->count + 1;
+        } elseif (isset($request->line_del)) {
+            $postCount = $request->count - 1;
+        } else {
+            $postCount = $request->count;
+        }
+        dd($earnings_detail);
+
+        if (is_null($earnings)) {
+            \Session::flash('err_msg', 'データがありません。');
+            return redirect(route('earningsList'));
+        }
+        return view('earnings.earnings_edit', ['id' => $id, 'products' => $products, 'earnings' => $earnings, 'earnings_detail' => $earnings_detail, 'user_id' => $user_id, 'postCount' => $postCount]);
     }
     /**
      * セッションに情報を保存する
