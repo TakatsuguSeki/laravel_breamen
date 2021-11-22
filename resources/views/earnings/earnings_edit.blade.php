@@ -12,8 +12,6 @@ if (isset($postCount)) {
 @section('content')
 <div>
     <h2>売上管理編集</h2>
-    <form method="post" action="">
-        @csrf
         <div class="form-group">
             <table class="table table-striped">
                 <tr>
@@ -28,8 +26,10 @@ if (isset($postCount)) {
                 <tr>
                     <th>商品</th>
                     <th>個数</th>
+                    <th></th>
                 </tr>
                 @for ($i = 0; $i < $count; $i++)
+                <tbody class="line">
                     <tr>
                         <td>
                             <select id="product_id" name="product_id[{{ $i }}]" class="form-control">
@@ -46,10 +46,13 @@ if (isset($postCount)) {
                             value="{{ old('num', $earnings_detail[$i]['num']) }}"
                             >
                         </td>
+                        <td><button class="remove btn btn-danger">ー</button></td>
                     </tr>
+                </tbody>
                 @endfor
             </table>
             <input type="hidden" name="create_user" value="{{ $user_id }}">
+            <button id="addRow" class="btn btn-primary">+ 追加</button>
             <button name="line_add" class="btn btn-primary" value="1行追加">1行追加</button>
             <button name="line_del" class="btn btn-danger" value="1行削除">1行削除</button>
         </div>
@@ -63,6 +66,6 @@ if (isset($postCount)) {
                 確認画面へ
             </button>
         </div>
-    </form>
 </div>
+<script src="{{ mix('js/add_line.js') }}"></script>
 @endsection

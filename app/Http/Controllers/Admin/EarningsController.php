@@ -95,7 +95,6 @@ class EarningsController extends Controller
         } else {
             $postCount = $request->count;
         }
-        dd($earnings_detail);
 
         if (is_null($earnings)) {
             \Session::flash('err_msg', 'データがありません。');
