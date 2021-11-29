@@ -12,6 +12,8 @@ if (isset($postCount)) {
 @section('content')
 <div>
     <h2>売上管理編集</h2>
+    <form id="edit" method="post" action="{{ route('editPost') }}">
+    @csrf
         <div class="form-group">
             <table class="table table-striped">
                 <tr>
@@ -28,8 +30,8 @@ if (isset($postCount)) {
                     <th>個数</th>
                     <th></th>
                 </tr>
-                @for ($i = 0; $i < $count; $i++)
                 <tbody class="line">
+                    @for ($i = 0; $i < $count; $i++)
                     <tr>
                         <td>
                             <select id="product_id" name="product_id[{{ $i }}]" class="form-control">
@@ -48,24 +50,40 @@ if (isset($postCount)) {
                         </td>
                         <td><button class="remove btn btn-danger">ー</button></td>
                     </tr>
+                    @endfor
+                    <tr id="RowTemplate" style="display: disabled;">
+                        <td>
+                            <select id="product_id" name="product_id[]" class="form-control">
+                                @foreach ($products as $product)
+                                    <option value="{{ $product['id'] }}" {{ isset($earnings_detail[$i]['product_id']) && $product['id'] == $earnings_detail[$i]['product_id'] ? ' selected' : '' }}>{{ $product['name'] }}</option>
+                                @endforeach
+                            </select>
+                        </td>
+                        <td>
+                            <input
+                            type="text"
+                            name="num[]"
+                            class="form-control"
+                            value="{{ old('num', isset($earnings_detail[$i]['num']) ? $earnings_detail[$i]['num'] : 0) }}"
+                            >
+                        </td>
+                        <td><button class="remove btn btn-danger">ー</button></td>
+                    </tr>
                 </tbody>
-                @endfor
             </table>
             <input type="hidden" name="create_user" value="{{ $user_id }}">
-            <button id="addRow" class="btn btn-primary">+ 追加</button>
-            <button name="line_add" class="btn btn-primary" value="1行追加">1行追加</button>
-            <button name="line_del" class="btn btn-danger" value="1行削除">1行削除</button>
-        </div>
-        <div class="mt-5">
             <input type="hidden" name="earnings_id" value="{{ $earnings['id'] }}">
-            <input type="hidden" name="count" value="{{ $count }}">
-            <a class="btn btn-secondary" href="{{ route('earningsList') }}">
-                キャンセル
-            </a>
-            <button type="submit" class="btn btn-primary" formaction="{{ route('editPost') }}">
-                確認画面へ
-            </button>
         </div>
+    </form>
+    <button id="addRow" type="button" class="btn btn-primary">1行追加</button>
+    <div class="mt-5">
+        <a class="btn btn-secondary" href="{{ route('earningsList') }}">
+            キャンセル
+        </a>
+        <button type="submit" class="btn btn-primary" form="edit">
+            確認画面へ
+        </button>
+    </div>
 </div>
 <script src="{{ mix('js/add_line.js') }}"></script>
 @endsection
